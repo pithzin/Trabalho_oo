@@ -1,0 +1,34 @@
+classDiagram
+    class Usuario {
+        -nome: str
+        -email: str
+        +__init__(nome: str, email: str)
+        +__str__()
+    }
+
+    class Conta {
+        -saldo: float
+        -transacoes: list~Transacao~
+        +__init__()
+        +adicionar_transacao(transacao: Transacao)
+        +gerar_extrato()
+    }
+
+    class Transacao {
+        -descricao: str
+        -valor: float
+        -data: date
+        -tipo: str
+        +__init__(descricao: str, valor: float, categoria: Categoria, tipo: str, data_transacao: date)
+        +__str__()
+    }
+
+    class Categoria {
+        -nome: str
+        +__init__(nome: str)
+        +__str__()
+    }
+
+    Usuario "1" -- "1" Conta : possui
+    Conta "1" o-- "*" Transacao : registra
+    Transacao "*" -- "1" Categoria : pertence a
